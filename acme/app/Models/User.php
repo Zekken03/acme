@@ -18,8 +18,15 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
+        'info_id',
         'name',
+        'paternal_surname',
+        'maternal_surname',
         'email',
+        'email_verified_at',
+        'phone',
+        'address',
+        'level',
         'password',
     ];
 
@@ -44,5 +51,22 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    // Relaciones
+    public function architect()
+    {
+        return $this->hasOne(Architect::class, 'info_id');
+    }
+
+    public function customer()
+    {
+        return $this->hasOne(Customer::class, 'info_id');
+    }
+
+    // Nombre completo
+    public function getFullNameAttribute()
+    {
+        return "{$this->name} {$this->paternal_surname} {$this->maternal_surname}";
     }
 }
