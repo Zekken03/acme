@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('architectural_drawings', function (Blueprint $table) {
             $table->id();
-            $table->integer('drawing_id');
             $table->string('name');
-            $table->string('file_design');
+            $table->string('drawing_id')->unique();
+            $table->string('file_design'); 
             $table->foreignId('project_id')
                   ->constrained()
                   ->onDelete('cascade');
-                  
+            $table->text('description')->nullable();
             $table->date('create_date');
             $table->timestamps();
         });

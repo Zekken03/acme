@@ -16,54 +16,41 @@
     <div class="card-body">
         <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                <thead>
+                                <thead>
                     <tr>
                         <th>ID</th>
                         <th>Nombre</th>
-                        <th>Apellidos</th>
+                        <th>Apellido Paterno</th>
+                        <th>Apellido Materno</th>
                         <th>Email</th>
                         <th>Teléfono</th>
+                        <th>Dirección</th>
                         <th>Nivel</th>
+                        <th>Contraseña</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Rigoberto Admin</td>
-                        <td>Admin User</td>
-                        <td>admin@example.com</td>
-                        <td>1234567890</td>
-                        <td><span class="badge badge-danger">Admin</span></td>
-                        <td>
-                            <a href="#" class="btn btn-sm btn-primary">Ver</a>
-                            <a href="#" class="btn btn-sm btn-warning">Editar</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Pedro Regular</td>
-                        <td>Regular User</td>
-                        <td>user@example.com</td>
-                        <td>0987654321</td>
-                        <td><span class="badge badge-primary">Usuario</span></td>
-                        <td>
-                            <a href="#" class="btn btn-sm btn-primary">Ver</a>
-                            <a href="#" class="btn btn-sm btn-warning">Editar</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Alex Architect</td>
-                        <td>Architect User</td>
-                        <td>architect@example.com</td>
-                        <td>1122334455</td>
-                        <td><span class="badge badge-success">Arquitecto</span></td>
-                        <td>
-                            <a href="#" class="btn btn-sm btn-primary">Ver</a>
-                            <a href="#" class="btn btn-sm btn-warning">Editar</a>
-                        </td>
-                    </tr>
+                    @foreach($usuarios as $item)
+                        <tr>
+                            <td>{{ $item->id }}</td>
+                            <td>{{ $item->name }}</td>
+                            <td>{{ $item->paternal_surname }}</td>
+                            <td>{{ $item->maternal_surname }}</td>
+                            <td>{{ $item->email }}</td>
+                            <td>{{ $item->phone }}</td>
+                            <td>{{ $item->address }}</td>
+                            <td>{{ $item->level }}</td>
+                            <td>******</td>
+                            <td>
+                                <a href="#" class="btn btn-sm btn-primary">Ver</a>
+                                <a href="#" class="btn btn-sm btn-warning">Editar</a>
+                                <button class="btn btn-sm btn-danger btnEliminar" data-id="{{ $item->id }}" data-toggle="modal" data-target="#modalDelete">
+                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

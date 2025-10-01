@@ -1,7 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+//IMPORTAR CONTROLADORES
+use App\Http\Controllers\UsersController;
+use App\Http\Controllers\ProjectsController;
+use App\Http\Controllers\PlanosController;
+use App\Http\Controllers\ZonesController;
+use App\Http\Controllers\ArchitectsController;
+use App\Http\Controllers\CustomersController;
 
+//ENDPOINT
 Route::get('/', function () {
     return view('welcome');
 });
@@ -10,29 +18,23 @@ Route::get('/', function () {
 Route::group(['prefix' => 'dashboard'], function () {
     Route::get('/', function () {
         return view('admin.dashboard');
-    })->name('dashboard');
+    });
     
-    Route::get('/projects', function () {
-        return view('admin.projects');
-    })->name('admin.projects');
+    Route::get('/projects', [ProjectsController::class, 'getProjects']);
+    Route::post('/projects', [ProjectsController::class, 'createProject']);
     
-    Route::get('/planos', function () {
-        return view('admin.planos');
-    })->name('admin.planos');
+    Route::get('/planos', [PlanosController::class, 'getPlanos']);
+    Route::post('/planos', [PlanosController::class, 'createPlano']);
     
-    Route::get('/zones', function () {
-        return view('admin.zones');
-    })->name('admin.zones');
+    Route::get('/zones', [ZonesController::class, 'getZones']);
+    Route::post('/zones', [ZonesController::class, 'createZone']);
     
-    Route::get('/architects', function () {
-        return view('admin.architects');
-    })->name('admin.architects');
+    Route::get('/architects', [ArchitectsController::class, 'getArchitects']);
+    Route::post('/architects', [ArchitectsController::class, 'createArchitect']);
     
-    Route::get('/customers', function () {
-        return view('admin.customers');
-    })->name('admin.customers');
+    Route::get('/customers', [CustomersController::class, 'getCustomers']);
+    Route::post('/customers', [CustomersController::class, 'createCustomer']);
     
-    Route::get('/users', function () {
-        return view('admin.users');
-    })->name('admin.users');
+    Route::get('/users', [UsersController::class, 'getUsers']);
+    Route::post('/users', [UsersController::class, 'createUser']);
 });

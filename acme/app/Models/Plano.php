@@ -15,6 +15,7 @@ class Plano extends Model
         'name',
         'file_design',
         'project_id',
+        'description',
         'create_date'
     ];
     

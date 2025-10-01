@@ -30,34 +30,25 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Casa Habitación</td>
-                        <td>Proyecto de casa habitación de dos niveles...</td>
-                        <td>Cliente 1</td>
-                        <td>Zona Norte</td>
-                        <td>Alex Architect</td>
-                        <td>2023-01-15</td>
-                        <td>2023-12-15</td>
-                        <td>
-                            <a href="#" class="btn btn-sm btn-primary">Ver</a>
-                            <a href="#" class="btn btn-sm btn-warning">Editar</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Edificio de Oficinas</td>
-                        <td>Diseño y construcción de un edificio...</td>
-                        <td>Cliente 2</td>
-                        <td>Zona Sur</td>
-                        <td>Luis Architect</td>
-                        <td>2023-03-01</td>
-                        <td>2024-03-01</td>
-                        <td>
-                            <a href="#" class="btn btn-sm btn-primary">Ver</a>
-                            <a href="#" class="btn btn-sm btn-warning">Editar</a>
-                        </td>
-                    </tr>
+                    @foreach($projects as $item)
+                        <tr>
+                            <td>{{ $item->id }}</td>
+                            <td>{{ $item->name }}</td>
+                            <td>{{ $item->description }}</td>
+                            <td>{{ $item->customer_id }}</td>
+                            <td>{{ $item->zone_id }}</td>
+                            <td>{{ $item->architect_id }}</td>
+                            <td>{{ $item->start_date }}</td>
+                            <td>{{ $item->delivery_date }}</td>
+                            <td>
+                                <a href="#" class="btn btn-sm btn-primary">Ver</a>
+                                <a href="#" class="btn btn-sm btn-warning">Editar</a>
+                                <button class="btn btn-sm btn-danger btnEliminar" data-id="{{ $item->id }}" data-toggle="modal" data-target="#modalDelete">
+                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

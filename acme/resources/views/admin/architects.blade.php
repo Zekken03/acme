@@ -27,28 +27,22 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Alex Architect</td>
-                        <td>CERT2323ALEXWF232</td>
-                        <td>architect@example.com</td>
-                        <td>1122334455</td>
-                        <td>
-                            <a href="#" class="btn btn-sm btn-primary">Ver</a>
-                            <a href="#" class="btn btn-sm btn-warning">Editar</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Luis Architect</td>
-                        <td>LUISRE23244323WF232</td>
-                        <td>luis.architect@example.com</td>
-                        <td>2233445566</td>
-                        <td>
-                            <a href="#" class="btn btn-sm btn-primary">Ver</a>
-                            <a href="#" class="btn btn-sm btn-warning">Editar</a>
-                        </td>
-                    </tr>
+                    @foreach($architects as $item)
+                        <tr>
+                            <td>{{ $item->id }}</td>
+                            <td>{{ $item->user->name ?? 'N/A' }}</td>
+                            <td>{{ $item->certificate ?? 'N/A' }}</td>
+                            <td>{{ $item->user->email ?? 'N/A' }}</td>
+                            <td>{{ $item->user->phone ?? 'N/A' }}</td>
+                            <td>
+                                <a href="#" class="btn btn-sm btn-primary">Ver</a>
+                                <a href="#" class="btn btn-sm btn-warning">Editar</a>
+                                <button class="btn btn-sm btn-danger btnEliminar" data-id="{{ $item->id }}" data-toggle="modal" data-target="#modalDelete">
+                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

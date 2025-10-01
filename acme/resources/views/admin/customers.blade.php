@@ -20,7 +20,6 @@
                     <tr>
                         <th>ID</th>
                         <th>Nombre</th>
-                        <th>RFC</th>
                         <th>Email</th>
                         <th>Teléfono</th>
                         <th>Dirección</th>
@@ -28,30 +27,22 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Rigoberto Admin</td>
-                        <td>RG23354654WF232</td>
-                        <td>admin@example.com</td>
-                        <td>1234567890</td>
-                        <td>123 Admin St, City, Country</td>
-                        <td>
-                            <a href="#" class="btn btn-sm btn-primary">Ver</a>
-                            <a href="#" class="btn btn-sm btn-warning">Editar</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Pedro Regular</td>
-                        <td>PRTGRE23244323WF232</td>
-                        <td>user@example.com</td>
-                        <td>0987654321</td>
-                        <td>456 User Ave, City, Country</td>
-                        <td>
-                            <a href="#" class="btn btn-sm btn-primary">Ver</a>
-                            <a href="#" class="btn btn-sm btn-warning">Editar</a>
-                        </td>
-                    </tr>
+                    @foreach($customers as $item)
+                        <tr>
+                            <td>{{ $item->id }}</td>
+                            <td>{{ $item->user->name ?? 'N/A' }}</td>
+                            <td>{{ $item->user->email ?? 'N/A' }}</td>
+                            <td>{{ $item->user->phone ?? 'N/A' }}</td>
+                            <td>{{ $item->user->address ?? 'N/A' }}</td>
+                            <td>
+                                <a href="#" class="btn btn-sm btn-primary">Ver</a>
+                                <a href="#" class="btn btn-sm btn-warning">Editar</a>
+                                <button class="btn btn-sm btn-danger btnEliminar" data-id="{{ $item->id }}" data-toggle="modal" data-target="#modalDelete">
+                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
