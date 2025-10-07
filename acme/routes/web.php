@@ -38,3 +38,7 @@ Route::group(['prefix' => 'dashboard'], function () {
     Route::get('/users', [UsersController::class, 'getUsers']);
     Route::post('/users', [UsersController::class, 'createUser']);
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
